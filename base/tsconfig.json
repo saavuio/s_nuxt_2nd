@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "preserveSymlinks": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "types": [
+      "@types/node",
+      "@nuxt/vue-app-edge"
+    ]
+  },
+  "defaultExtension": "ts",
+  "include": [
+    "**/*.ts",
+    "**/*.vue"
+  ],
+  "exclude": [
+    "node_modules",
+    "node_modules_dev",
+    "node_modules_prod"
+  ]
+}

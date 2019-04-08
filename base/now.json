@@ -1,0 +1,16 @@
+{
+  "name": "now-nuxt-ts-example",
+  "version": 2,
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "https://github.com/nles/now-builder",
+      "config": {}
+    }
+  ],
+  "routes": [
+    { "src": "/_nuxt/.+", "headers": { "cache-control": "s-maxage=31536000" } },
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}
+
