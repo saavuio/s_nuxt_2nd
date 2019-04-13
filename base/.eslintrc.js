@@ -34,6 +34,8 @@ module.exports = {
       'ignoreWhenNoAttributes': true,
       'ignores': ['pre', 'textarea', 'nuxt-link']
     }],
+    'vue/max-attributes-per-line': 'off',
+    'vue/html-self-closing': 'off',
   },
   settings: {
     'import/resolver': {
