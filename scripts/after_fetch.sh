@@ -23,13 +23,13 @@ fi
 cp ./s_nuxt_2nd/templates/s_nuxt_2nd.sh ${PROJECT_ROOT_PATH}
 
 # scripts
-if [ ! -d ${PROJECT_ROOT_PATH}/scripts ]; then
-  cp -a ./s_nuxt_2nd/templates/scripts ${PROJECT_ROOT_PATH}/scripts
-fi
+rm -r ${PROJECT_ROOT_PATH}/scripts
+cp -a ./s_nuxt_2nd/templates/scripts ${PROJECT_ROOT_PATH}/scripts
+
 # .gitignore skel
-if [ ! -f ${PROJECT_ROOT_PATH}/.gitignore ]; then
-  cp ./s_nuxt_2nd/templates/gitignore ${PROJECT_ROOT_PATH}/.gitignore
-fi
+rm ${PROJECT_ROOT_PATH}/.gitignore
+cp ./s_nuxt_2nd/templates/gitignore ${PROJECT_ROOT_PATH}/.gitignore
+
 # env-development skel
 if [ ! -f ${PROJECT_ROOT_PATH}/env-development ]; then
   cp ./s_nuxt_2nd/templates/env-development ${PROJECT_ROOT_PATH}/env-development
