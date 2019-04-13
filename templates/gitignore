@@ -27,12 +27,13 @@ node_modules
 
 # Misc
 dist
-.eslintrc.js
-.prettierrc.js
-tsconfig.json
 .DS_Store
 
 # s_bases
 s_base/s_*
 node_modules_app
 .ejected
+package.json
+.eslintrc.js
+.prettierrc.js
+tsconfig.json

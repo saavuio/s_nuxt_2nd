@@ -19,8 +19,8 @@ if [ ! -z $NET_NAME ]; then
  DOCKER_PARAM_NET=--net=$NET_NAME
 fi
 
-if [ ! -f $RUN_DIR/package.json ]; then
-  echo "No package.json found."
+if [ ! -f $RUN_DIR/package_app.json ]; then
+  echo "No package_app.json found."
   exit 1
 fi
 
@@ -63,7 +63,7 @@ docker run \
   $([ -d $RUN_DIR/src ] && echo "--volume $RUN_DIR/src:/s_nuxt_2nd/src") \
   $([ -d $RUN_DIR/dist ] && echo "--volume $RUN_DIR/dist:/s_nuxt_2nd/dist") \
   $([ -d $RUN_DIR/public ] && echo "--volume $RUN_DIR/public:/s_nuxt_2nd/public") \
-  $([ -f $RUN_DIR/package.json ] && echo "--volume $RUN_DIR/package.json:/ext/package.json") \
+  $([ -f $RUN_DIR/package_app.json ] && echo "--volume $RUN_DIR/package_app.json:/ext/package.json") \
   $([ -d $RUN_DIR/.webpack-cache ] && echo "--volume $RUN_DIR/.webpack-cache:/s_nuxt_2nd/.webpack-cache") \
   $([ -d $RUN_DIR/node_modules_app ] && echo "--volume $RUN_DIR/node_modules_app:/ext/node_modules") \
   $([ -f $RUN_DIR/env-development ] && echo "--volume $RUN_DIR/env-development:/s_nuxt_2nd/env-development") \

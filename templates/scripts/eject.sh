@@ -30,6 +30,7 @@ if [ ! -f .ejected ]; then
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/.eslintrc.js ./
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/.prettierrc.js ./
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/tsconfig.json ./
+  docker cp ${CONTAINER_NAME}:/$IMAGE_ID/package.json ./
   #
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/node_modules.tar.bz2 ./
   echo "extract node_modules..."

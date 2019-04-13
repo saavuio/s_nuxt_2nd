@@ -34,7 +34,7 @@ fi
 if [ ! -f ${PROJECT_ROOT_PATH}/env-development ]; then
   cp ./s_nuxt_2nd/templates/env-development ${PROJECT_ROOT_PATH}/env-development
 fi
-# package.json skel
-if [ ! -f ${PROJECT_ROOT_PATH}/package.json ]; then
-  echo "{}" > ${PROJECT_ROOT_PATH}/package.json
+# package_app.json skel
+if [ ! -f ${PROJECT_ROOT_PATH}/package_app.json ]; then
+  echo "{}" > ${PROJECT_ROOT_PATH}/package_app.json
 fi
