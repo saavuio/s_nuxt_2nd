@@ -22,11 +22,15 @@ fi
 # link to self
 cp ./s_nuxt_2nd/templates/s_nuxt_2nd.sh ${PROJECT_ROOT_PATH}
 
+mkdir _stash
+
 # scripts
+cp -a ${PROJECT_ROOT_PATH}/scripts _stash 2> /dev/null
 rm -r ${PROJECT_ROOT_PATH}/scripts
 cp -a ./s_nuxt_2nd/templates/scripts ${PROJECT_ROOT_PATH}/scripts
 
 # .gitignore skel
+cp ${PROJECT_ROOT_PATH}/.gitignore _stash 2> /dev/null
 rm ${PROJECT_ROOT_PATH}/.gitignore
 cp ./s_nuxt_2nd/templates/gitignore ${PROJECT_ROOT_PATH}/.gitignore
 

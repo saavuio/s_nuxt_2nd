@@ -37,3 +37,4 @@ package.json
 .eslintrc.js
 .prettierrc.js
 tsconfig.json
+_stash
