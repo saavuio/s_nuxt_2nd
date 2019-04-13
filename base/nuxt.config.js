@@ -4,6 +4,12 @@ export default {
   mode: 'universal',
   srcDir: 'src',
   buildDir: '.nuxt/build',
+  env: {
+    NODE_ENV: process.env.NODE_ENV,
+  },
+  server: {
+    host: '0.0.0.0',
+  },
   plugins: ['@/plugins/vuetify'],
   build: {
     extend(config, ctx) {

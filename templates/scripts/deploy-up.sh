@@ -19,7 +19,7 @@ fi
 rm -rf _to_deploy
 mkdir _to_deploy
 MKTMP=$(mktemp)
-jq -s 'reduce .[] as $d ({}; . *= $d)' ./dependencies/s_nuxt_2nd/base/package.json ./package.json > merged-package.json
+jq -s 'reduce .[] as $d ({}; . *= $d)' ./s_base/s_nuxt_2nd/base/package.json ./package.json > merged-package.json
 jq -r ".scripts[\"now-build\"] = \"npm run build\"" merged-package.json > "$MKTMP" && mv "$MKTMP" merged-package.json
 jq -r ".scripts[\"build\"] = \"NODE_ENV=$ENVIRONMENT nuxt build\"" merged-package.json > "$MKTMP" && mv "$MKTMP" merged-package.json
 

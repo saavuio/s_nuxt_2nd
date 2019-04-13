@@ -32,7 +32,7 @@ dist
 tsconfig.json
 .DS_Store
 
-# s_deps
-dependencies/s_*
+# s_bases
+s_base/s_*
 node_modules_app
 .ejected

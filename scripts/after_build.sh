@@ -12,6 +12,6 @@ $PROJECT_ROOT_PATH/scripts/build.sh
 
 echo
 echo "To start with an example base, run:"
-echo "cp -a ./dependencies/s_nuxt_2nd/example/src/* ./src"
+echo "cp -a ./s_base/s_nuxt_2nd/example/src/* ./src"
 echo "./s_nuxt_2nd.sh yarn add axios"
 echo
