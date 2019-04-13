@@ -11,8 +11,7 @@ function fetch {
   NAME=$1
   VERSION=$2
   rm -rf ./$NAME
-  cp -a /tila/files/prj/s_bases/$NAME $NAME
-  # git clone --single-branch -b $VERSION https://github.com/saavuio/$NAME
+  git clone --single-branch -b $VERSION https://github.com/saavuio/$NAME
   PROJECT_ROOT_PATH=.. ./$NAME/scripts/after_fetch.sh
 }
 
