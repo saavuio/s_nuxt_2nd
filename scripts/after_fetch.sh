@@ -36,6 +36,11 @@ cp ${PROJECT_ROOT_PATH}/.gitignore $STASH_DIR 2> /dev/null
 rm ${PROJECT_ROOT_PATH}/.gitignore
 cp ./s_nuxt_2nd/templates/gitignore ${PROJECT_ROOT_PATH}/.gitignore
 
+# .nowignore skel
+cp ${PROJECT_ROOT_PATH}/.nowignore $STASH_DIR 2> /dev/null
+rm ${PROJECT_ROOT_PATH}/.nowignore
+cp ./s_nuxt_2nd/templates/nowignore ${PROJECT_ROOT_PATH}/.nowignore
+
 # env-development skel
 if [ ! -f ${PROJECT_ROOT_PATH}/env-development ]; then
   cp ./s_nuxt_2nd/templates/env-development ${PROJECT_ROOT_PATH}/env-development

@@ -1,5 +1,3 @@
-const path = require('path');
-
 export default {
   mode: 'universal',
   srcDir: 'src',
@@ -10,7 +8,10 @@ export default {
   server: {
     host: '0.0.0.0',
   },
-  plugins: ['@/plugins/vuetify'],
+  // prettier-ignore
+  plugins: [
+    '@/plugins/vuetify.ts',
+  ],
   build: {
     extend(config, ctx) {
       // Run ESLint on save
@@ -19,9 +20,9 @@ export default {
           enforce: 'pre',
           test: /\.(js|vue|ts)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+          exclude: /(node_modules)/,
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
