@@ -10,7 +10,7 @@ export default {
   },
   // prettier-ignore
   plugins: [
-    '@/plugins/vuetify.ts',
+    '@/plugins/vuetify-init',
   ],
   build: {
     extend(config, ctx) {
@@ -24,5 +24,6 @@ export default {
         });
       }
     },
+    transpile: [/^vuetify/],
   },
 };
