@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /s_nuxt_2nd
+cd /$S_BASE_NAME
 
 # copy external node modules
 cp -a /ext/node_modules/* node_modules

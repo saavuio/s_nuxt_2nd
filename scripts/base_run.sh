@@ -1,10 +1,11 @@
 #!/bin/bash
+if [ -z $S_BASE_NAME ]; then echo "S_BASE_NAME not provided"; exit 1; fi
+if [ -z $S_BASE_VERSION ]; then echo "S_BASE_VERSION not provided"; exit 1; fi
+
 RUN_DIR=$(pwd)
 cd $RUN_DIR
 
-IMAGE=saavu-local/s_nuxt_2nd_v1
-
-RUN_DIR=$(pwd)
+IMAGE=saavu-local/${S_BASE_NAME}_${S_BASE_VERSION}
 
 if [ ! -z $CONTAINER_NAME ]; then
   DOCKER_PARAM_NAME=--name=$CONTAINER_NAME
@@ -47,7 +48,7 @@ if [ "$TWO" = "yarn add" -o "$TWO" = "yarn install" ]; then
   CMD="$ARGS"
 else
   # working with packages already in the container
-  WORKDIR="/s_nuxt_2nd";
+  WORKDIR="/${S_BASE_NAME}";
   CMD="/entry.sh $ARGS"
 fi
 
@@ -60,20 +61,20 @@ docker run \
   $DOCKER_PARAM_NAME \
   $DOCKER_PARAM_NET \
   $([ ! -z $PORT_TO_OPEN ] && echo "-p $PORT_TO_OPEN:$PORT_TO_OPEN") \
-  $([ -d $RUN_DIR/src ] && echo "--volume $RUN_DIR/src:/s_nuxt_2nd/src") \
-  $([ -d $RUN_DIR/dist ] && echo "--volume $RUN_DIR/dist:/s_nuxt_2nd/dist") \
-  $([ -d $RUN_DIR/public ] && echo "--volume $RUN_DIR/public:/s_nuxt_2nd/public") \
+  $([ -d $RUN_DIR/src ] && echo "--volume $RUN_DIR/src:/${S_BASE_NAME}/src") \
+  $([ -d $RUN_DIR/dist ] && echo "--volume $RUN_DIR/dist:/${S_BASE_NAME}/dist") \
+  $([ -d $RUN_DIR/public ] && echo "--volume $RUN_DIR/public:/${S_BASE_NAME}/public") \
   $([ -f $RUN_DIR/package_app.json ] && echo "--volume $RUN_DIR/package_app.json:/ext/package.json") \
-  $([ -d $RUN_DIR/.webpack-cache ] && echo "--volume $RUN_DIR/.webpack-cache:/s_nuxt_2nd/.webpack-cache") \
+  $([ -d $RUN_DIR/.webpack-cache ] && echo "--volume $RUN_DIR/.webpack-cache:/${S_BASE_NAME}/.webpack-cache") \
   $([ -d $RUN_DIR/node_modules_app ] && echo "--volume $RUN_DIR/node_modules_app:/ext/node_modules") \
-  $([ -f $RUN_DIR/env-development ] && echo "--volume $RUN_DIR/env-development:/s_nuxt_2nd/env-development") \
-  $([ -f $RUN_DIR/now.json ] && echo "--volume $RUN_DIR/now.json:/s_nuxt_2nd/now.json") \
-  $([ -f $RUN_DIR/.gitignore ] && echo "--volume $RUN_DIR/.gitignore:/s_nuxt_2nd/.gitignore") \
-  $([ -f $RUN_DIR/.npmignore ] && echo "--volume $RUN_DIR/.npmignore:/s_nuxt_2nd/.npmignore") \
-  $([ -f $RUN_DIR/.eslintignore ] && echo "--volume $RUN_DIR/.eslintignore:/s_nuxt_2nd/.eslintignore") \
-  $([ -d $RUN_DIR/.nuxt ] && echo "--volume $RUN_DIR/.nuxt:/s_nuxt_2nd/.nuxt") \
-  $([ -f $RUN_DIR/nuxt.config.js ] && echo "--volume $RUN_DIR/nuxt.config.js:/s_nuxt_2nd/nuxt.config.js") \
-  $([ -f $RUN_DIR/vue.config.js ] && echo "--volume $RUN_DIR/vue.config.js:/s_nuxt_2nd/vue.config.js") \
+  $([ -f $RUN_DIR/env-development ] && echo "--volume $RUN_DIR/env-development:/${S_BASE_NAME}/env-development") \
+  $([ -f $RUN_DIR/now.json ] && echo "--volume $RUN_DIR/now.json:/${S_BASE_NAME}/now.json") \
+  $([ -f $RUN_DIR/.gitignore ] && echo "--volume $RUN_DIR/.gitignore:/${S_BASE_NAME}/.gitignore") \
+  $([ -f $RUN_DIR/.npmignore ] && echo "--volume $RUN_DIR/.npmignore:/${S_BASE_NAME}/.npmignore") \
+  $([ -f $RUN_DIR/.eslintignore ] && echo "--volume $RUN_DIR/.eslintignore:/${S_BASE_NAME}/.eslintignore") \
+  $([ -d $RUN_DIR/.nuxt ] && echo "--volume $RUN_DIR/.nuxt:/${S_BASE_NAME}/.nuxt") \
+  $([ -f $RUN_DIR/nuxt.config.js ] && echo "--volume $RUN_DIR/nuxt.config.js:/${S_BASE_NAME}/nuxt.config.js") \
+  $([ -f $RUN_DIR/vue.config.js ] && echo "--volume $RUN_DIR/vue.config.js:/${S_BASE_NAME}/vue.config.js") \
   --workdir $WORKDIR \
   --entrypoint sh \
   $IMAGE \

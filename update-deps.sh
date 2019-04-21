@@ -23,6 +23,9 @@ fi
 
 mkdir $CACHE_DIR
 mv node_modules.tar.bz2 $CACHE_DIR
+
+# UNCOMMENT TO PUSH TO GITHUB
+
 cd $CACHE_DIR
 git init
 git remote add origin $CACHE_REPO
