@@ -8,15 +8,15 @@ cd ..
 # to do realtime linting and module discovery.
 #
 # Remove .ejected to get the files out of the containers again (should not be
-# necessary unless the base template has been updated).
+# necessary unless the base template has been updated or new dependencies added).
 
-if [ ! -f .ejected ]; then
+if [ ! -f .ejected ] || [ "$1" = "force" ]; then
   echo "fetching stuff from inside the container."
   IMAGE_ID=s_nuxt_2nd
   RUNNER=./${IMAGE_ID}.sh
   if [ ! -f $RUNNER ]; then exit 1; fi
   CONTAINER_NAME=${IMAGE_ID}_tmp
-  CONTAINER_NAME=$CONTAINER_NAME NO_TTY=1 $RUNNER eval "sleep 30;" &
+  CONTAINER_NAME=$CONTAINER_NAME NO_TTY=1 $RUNNER eval "sleep 60;" &
   #
   echo "run container..."
   until docker ps | grep "$CONTAINER_NAME" > /dev/null; do
@@ -32,11 +32,14 @@ if [ ! -f .ejected ]; then
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/tsconfig.json ./
   docker cp ${CONTAINER_NAME}:/$IMAGE_ID/package.json ./
   #
-  docker cp ${CONTAINER_NAME}:/$IMAGE_ID/node_modules.tar.bz2 ./
-  echo "extract node_modules..."
-  tar xjf node_modules.tar.bz2
-  rm node_modules.tar.bz2
+  if [ ! -d node_modules ]; then
+    docker cp ${CONTAINER_NAME}:/$IMAGE_ID/node_modules.tar.bz2 ./
+    echo "extract node_modules..."
+    tar xjf node_modules.tar.bz2
+    rm node_modules.tar.bz2
+  fi
   #
+  echo "stop container..."
   docker stop ${CONTAINER_NAME}
   #
   touch .ejected
