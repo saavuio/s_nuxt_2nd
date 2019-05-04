@@ -2,6 +2,9 @@ export default {
   mode: 'universal',
   srcDir: 'src',
   buildDir: '.nuxt/build',
+  generate: {
+    dir: '.nuxt/generated',
+  },
   env: {
     NODE_ENV: process.env.NODE_ENV,
   },

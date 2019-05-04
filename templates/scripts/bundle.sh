@@ -7,8 +7,4 @@ ENVIRONMENT=production
 if [ ! -z $1 ]; then ENVIRONMENT=$1; fi
 echo "Bundling for $ENVIRONMENT"
 
-if [ "$ENVIRONMENT" = "development" ]; then
-  NODE_ENV=$ENVIRONMENT ./s_nuxt_2nd.sh yarn run build
-else
-  NODE_ENV=$ENVIRONMENT ./s_nuxt_2nd.sh yarn run build
-fi
+NODE_ENV=$ENVIRONMENT ./s_nuxt_2nd.sh yarn run build ${@:2}
