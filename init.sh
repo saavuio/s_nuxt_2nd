@@ -9,11 +9,13 @@ if [ "$(basename $(echo $S_BASE_ROOT))" != "s_base" ]; then
   exit 1
 fi
 
+TARGET_SHA=$1
+
 function base_fetch {
   NAME=$1
   VERSION=$2
   # UNCOMMENT AND CORRECT FOR LOCAL SETUP (development)
-  # LOCAL_PATH=../../../s_bases
+  # LOCAL_PATH=../../../../../../s_bases
 
   rm -rf ./${NAME}
   rm -rf ./${NAME}_cache
@@ -23,8 +25,17 @@ function base_fetch {
   # UNCOMMENT FOR LOCAL SETUP (development)
   # cp -a ${LOCAL_PATH}/${NAME}/ ./$NAME
 
+  if [ ! -z "$TARGET_SHA" ]; then
+    cd ${NAME}
+    git -c advice.detachedHead=false checkout $TARGET_SHA
+    cd ..
+    CACHE_BRANCH=main-repo-sha-$TARGET_SHA
+  else
+    CACHE_BRANCH=$VERSION
+  fi
+
   # UNCOMMENT FOR REMOTE SETUP (default)
-  git clone --single-branch -b $VERSION https://github.com/saavuio/${NAME}_cache
+  git clone --single-branch -b $CACHE_BRANCH https://github.com/saavuio/${NAME}_cache
   # UNCOMMENT FOR LOCAL SETUP (development)
   # mv ./$NAME/base/node_modules_cache ${NAME}_cache
 
@@ -48,4 +59,3 @@ if [ ! -d s_nuxt_2nd ] || [ -z $OBF ]; then
   base_fetch "s_nuxt_2nd" "v1"
   base_build "s_nuxt_2nd" "v1"
 fi
-
