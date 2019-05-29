@@ -12,6 +12,14 @@ RUN apk update && \
     apk upgrade && \
     apk add git
 
+RUN apk add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++ \
+    && npm install \
+        [ your npm dependencies here ] \
+    && apk del .gyp
+
 # move node user away from uid 1000 in case our local user happens to have that uid
 RUN apk --no-cache add shadow && mkdir /var/mail && \
   usermod -u 1234 node && \
