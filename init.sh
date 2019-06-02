@@ -21,7 +21,7 @@ function base_fetch {
   rm -rf ./${NAME}_cache
 
   # UNCOMMENT FOR REMOTE SETUP (default)
-  git clone --single-branch -b $VERSION https://github.com/saavuio/$NAME
+  git clone --single-branch -b $VERSION https://github.com/mattgould1/$NAME
   # UNCOMMENT FOR LOCAL SETUP (development)
   # cp -a ${LOCAL_PATH}/${NAME}/ ./$NAME
 

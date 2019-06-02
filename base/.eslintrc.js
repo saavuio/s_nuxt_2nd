@@ -28,7 +28,6 @@ module.exports = {
   rules: {
     'no-null/no-null': 2,
     'no-console': ['error', { 'allow': ['log', 'debug', 'warn', 'error'] }],
-    '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/explicit-member-accessibility': 'off',
     'vue/singleline-html-element-content-newline': ['error', {
       'ignoreWhenNoAttributes': true,
