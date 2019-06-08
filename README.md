@@ -84,3 +84,22 @@ PTO=34481 ./s_nuxt_2nd.sh bash
 # To upgrade a package, you can use: yarn upgrade package-name (or: yarn add nuxt@0.8.1)
 # To run the service, you can use: yarn run dev (might need some extra params, see dev.sh)
 # To edit files within the container, you can use `vi`
+
+
+## Updating remote dependencies
+
+To prevent git-history from bloating up too much, the cached node_modules file
+lives in a seperate repository. The history of that particular repository is
+cleared each time a new version comes in. There can be multiple branches with
+different versions of cached node_modules (latest stuff always in the version
+branch [such as v1], and commit specific stuff in a branch identified by the
+commit SHA of the main repository (the 7 letter version).
+
+```
+# to build locally and compress
+./update_deps.sh
+# to upload to main version branch (like v1)
+SKIP_BUILD=1 PUSH_TO_REMOTE=1 ./update-deps.sh
+# to upload to a commit specific version branch identified by the git sha 7 letter version (like 1bcdef7)
+SKIP_BUILD=1 PUSH_TO_REMOTE=1 ./update-deps.sh 1bcdef7
+```

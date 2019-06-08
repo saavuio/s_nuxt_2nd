@@ -5,18 +5,15 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd $(realpath $SCRIPT_DIR)
 cd base
 
-echo "install dependencies"
-./yarn.sh install
+CACHE_DIR=node_modules_cache
 
-echo
-echo "compress node_modules"
-tar cjf node_modules.tar.bz2 node_modules/
+if [ -z "$SKIP_BUILD" ]; then
+  echo "install dependencies"
+  ./yarn.sh install
 
-if [ ! -z "$PUSH_TO_REMOTE" ]; then
-  echo "upload to seperate github repo"
-  CACHE_DIR=node_modules_cache
-  CACHE_REPO=git@github.com:saavuio/s_nuxt_2nd_cache.git
-  VERSION=v1
+  echo
+  echo "compress node_modules"
+  tar cjf node_modules.tar.bz2 node_modules/
 
   if [ -d $CACHE_DIR ]; then
     rm -rf $CACHE_DIR
@@ -24,6 +21,12 @@ if [ ! -z "$PUSH_TO_REMOTE" ]; then
 
   mkdir $CACHE_DIR
   mv node_modules.tar.bz2 $CACHE_DIR
+fi
+
+if [ ! -z "$PUSH_TO_REMOTE" ]; then
+  echo "upload to seperate github repo"
+  CACHE_REPO=git@github.com:saavuio/s_nuxt_2nd_cache.git
+  VERSION=v1
 
   if [ ! -z "$1" ]; then
     TARGET_BRANCH=main-repo-sha-$1
@@ -31,6 +34,7 @@ if [ ! -z "$PUSH_TO_REMOTE" ]; then
     TARGET_BRANCH=$VERSION
   fi
 
+  rm -rf $CACHE_DIR/.git
   cd $CACHE_DIR
   git init
   git remote add origin $CACHE_REPO
