@@ -39,6 +39,7 @@ fi
 # container.
 mkdir -p $RUN_DIR/dist
 mkdir -p $RUN_DIR/node_modules_app/saavu-cbin-placeholder
+mkdir -p $RUN_DIR/.webpack-cache
 
 ARGS=${@:1}
 TWO="$1 $2"
