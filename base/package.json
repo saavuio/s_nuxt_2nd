@@ -31,6 +31,7 @@
     "@vue/eslint-config-prettier": "4.0.1",
     "@vue/eslint-config-typescript": "4.0.0",
     "babel-eslint": "10.0.1",
+    "css-loader": "2.1.1",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.1.0",
@@ -47,6 +48,7 @@
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-standard": "4.0.0",
     "eslint-plugin-vue": "5.2.2",
+    "file-loader": "4.1.0",
     "node-sass": "^4.12.0",
     "prettier": "1.16.4",
     "sass-loader": "^7.1.0",
@@ -54,8 +56,10 @@
     "stylus-loader": "3.0.2",
     "ts-loader": "6.0.2",
     "typescript": "3.4.2",
+    "url-loader": "2.1.0",
     "vue-eslint-parser": "6.0.3",
     "vue-language-server": "0.0.49",
+    "vue-loader": "15.7.1",
     "vue-template-compiler": "2.6.10",
     "webpack": "4.33.0"
   }
