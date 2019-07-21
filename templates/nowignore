@@ -1,4 +1,6 @@
 .nuxt
+.webpack-cache
 s_base
+node_modules
 node_modules_app
 package_app.json
