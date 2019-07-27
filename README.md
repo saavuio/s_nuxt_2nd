@@ -9,10 +9,9 @@ across multiple repositories without having to define and configure them again
 for each service with a similar structure.
 
 There is also an attempt to provide some future-proofing in this constantly
-changing JS-soup by running everything in a containerized environment with
-pretty strict versioning of different dependencies. Of course, even this won't
-really prevent things from breaking in random ways due to external changes
-every now and then.
+changing JS-soup, by running everything in a containerized environment with
+strict versioning of dependencies. Of course, even this won't really prevent
+things from breaking in random ways due to external changes every now and then.
 
 We use these bases internally to prevent ending up with huge variation of
 different kinds of configurations with our services.
@@ -38,7 +37,7 @@ When the build is done, run it with:
 
 ## Local Development
 
-When making changes to the base, it can be benefitial to skip getting the base
+When making changes to the base, it can be beneficial to skip getting the base
 and node_modules from git. To develop the base locally, knowing the following
 will help a lot.
 
@@ -71,9 +70,10 @@ mkdir -p ./s_base/s_nuxt_2nd && cp $LOCAL_PATH/init.sh ./s_base/s_nuxt_2nd/init.
 
 ### Quick testing withing the container
 
-To do some quickly try some `node_module` updates etc. without rerunning the
-whole build process, you can do it faster by making the changes directly from
-within the container and copying them out to the base if things work out.
+To quickly try npm-module updates etc. without rerunning the whole build
+process, you can do it faster by making the changes directly from within the
+container like you would with a local environment, and then just copy the
+changes out to the base if things work.
 
 ```
 # enter the container (also exposing the port of your app to allow testing)
@@ -84,6 +84,7 @@ PTO=34481 ./s_nuxt_2nd.sh bash
 # To upgrade a package, you can use: yarn upgrade package-name (or: yarn add nuxt@0.8.1)
 # To run the service, you can use: yarn run dev (might need some extra params, see dev.sh)
 # To edit files within the container, you can use `vi`
+```
 
 
 ## Updating remote dependencies
