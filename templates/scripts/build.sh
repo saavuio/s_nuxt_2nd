@@ -4,4 +4,3 @@ cd $SCRIPT_DIR
 cd ..
 
 ./s_nuxt_2nd.sh yarn install
-./scripts/eject.sh

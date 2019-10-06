@@ -35,15 +35,24 @@ module.exports = {
     }],
     'vue/max-attributes-per-line': 'off',
     'vue/html-self-closing': 'off',
+    'import/extensions': ['error', 'always', {
+      js: 'never',
+      ts: 'never', // NOTE: ts itself doesn't want .ts extensions with imports, so don't lint here
+      vue: 'always', // NOTE: ts does not recognize vue files imported without extensions, so enforce this
+    }],
   },
   settings: {
     'import/resolver': {
       node: {
         paths: ['src'],
+        extensions: ['.js', '.ts', '.vue']
       },
-      alias: [
-        ['@', path.resolve(__dirname, 'src')],
-      ],
+      alias: {
+        map: [
+          ['@', path.resolve(__dirname, 'src')],
+        ],
+        extensions: ['.js', '.ts', '.vue'],
+      },
     },
   },
 }

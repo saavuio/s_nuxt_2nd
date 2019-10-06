@@ -6,7 +6,7 @@ ARG s_base_name
 
 ENV S_BASE_NAME=$s_base_name
 
-RUN apk --no-cache add bash git
+RUN apk --no-cache add bash git jq
 
 # move node user away from uid 1000 in case our local user happens to have that uid
 RUN apk --no-cache add shadow && mkdir /var/mail && \
@@ -14,8 +14,6 @@ RUN apk --no-cache add shadow && mkdir /var/mail && \
   useradd --shell /bin/bash -u $container_user_id -o -c "" -m user-in-container
 
 RUN mkdir -p /$s_base_name/src && mkdir -p /ext/node_modules
-
-RUN yarn global add package-json-merge --network-timeout 80000
 
 ADD ./base /$s_base_name
 ADD ./scripts/entry.sh /entry.sh

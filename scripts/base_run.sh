@@ -45,6 +45,7 @@ ARGS=${@:1}
 TWO="$1 $2"
 if [ "$TWO" = "yarn add" -o "$TWO" = "yarn install" ]; then
   # working with local packages (installing deps)
+  DO_EJECT=1
   WORKDIR="/ext";
   CMD="$ARGS"
 else
@@ -73,10 +74,20 @@ docker run \
   $([ -f $RUN_DIR/.gitignore ] && echo "--volume $RUN_DIR/.gitignore:/${S_BASE_NAME}/.gitignore") \
   $([ -f $RUN_DIR/.npmignore ] && echo "--volume $RUN_DIR/.npmignore:/${S_BASE_NAME}/.npmignore") \
   $([ -f $RUN_DIR/.eslintignore ] && echo "--volume $RUN_DIR/.eslintignore:/${S_BASE_NAME}/.eslintignore") \
+  $([ -f $RUN_DIR/.eslintrc.js ] && echo "--volume $RUN_DIR/.eslintrc.js:/${S_BASE_NAME}/.eslintrc.js") \
+  $([ -f $RUN_DIR/tsconfig.json ] && echo "--volume $RUN_DIR/tsconfig.json:/${S_BASE_NAME}/tsconfig.json") \
   $([ -d $RUN_DIR/.nuxt ] && echo "--volume $RUN_DIR/.nuxt:/${S_BASE_NAME}/.nuxt") \
   $([ -f $RUN_DIR/nuxt.config.js ] && echo "--volume $RUN_DIR/nuxt.config.js:/${S_BASE_NAME}/nuxt.config.js") \
   $([ -f $RUN_DIR/vue.config.js ] && echo "--volume $RUN_DIR/vue.config.js:/${S_BASE_NAME}/vue.config.js") \
+  $([ -d $RUN_DIR/config ] && echo "--volume $RUN_DIR/config:/${S_BASE_NAME}/config") \
   --workdir $WORKDIR \
   --entrypoint sh \
   $IMAGE \
   -c "$CMD"
+
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then exit $EXITCODE; fi
+
+if [ ! -z $DO_EJECT ] && [ -z $SKIP_EJECT ]; then
+  $RUN_DIR/scripts/eject.sh force
+fi
