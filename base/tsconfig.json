@@ -28,7 +28,7 @@
     },
     "types": [
       "@types/node",
-      "@nuxt/vue-app-edge"
+      "@nuxt/types"
     ]
   },
   "defaultExtension": "ts",

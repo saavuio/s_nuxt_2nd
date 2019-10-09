@@ -18,6 +18,10 @@ export default {
     meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   },
   // prettier-ignore
+  buildModules: [
+    '@nuxt/typescript-build'
+  ],
+  // prettier-ignore
   build: {
     parallel: process.env.NODE_ENV === 'development',
     cache: process.env.NODE_ENV === 'development',
