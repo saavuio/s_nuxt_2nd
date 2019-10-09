@@ -4,6 +4,14 @@ cd $SCRIPT_DIR
 
 NAME=s_nuxt_2nd
 VERSION=v2
+IMAGE=saavu-local/${NAME}_${VERSION}
+
+if [ "$(docker images -q $IMAGE 2> /dev/null)" = "" ] && [ ! -f .reset-initiated ]; then
+  echo "Image missing, reset."
+  touch .reset-initiated
+  rm -f .ejected
+  rm -rf s_base/${NAME}
+fi
 
 if [ ! -d ./s_base/${NAME} ]; then
   mkdir -p s_base/${NAME}
@@ -24,6 +32,7 @@ if [ "$GIT_SHA_SHOULD_BE" != "LATEST" ]; then
     echo "..."
     sleep 3
     ./s_base/${NAME}/init.sh $GIT_SHA_SHOULD_BE
+    rm -f .reset-initiated
   fi
 fi
 
