@@ -21,8 +21,9 @@ function base_fetch {
   # UNCOMMENT FOR REMOTE SETUP (default)
   git clone --single-branch -b $VERSION https://github.com/saavuio/$NAME
   # UNCOMMENT AND CORRECT FOR LOCAL SETUP (development)
-  # LOCAL_PATH=../../../../../../s_bases/s_nuxt_2nd
+  # LOCAL_PATH=/path/to/s_nuxt_2nd
   # cp -a ${LOCAL_PATH} ./$NAME
+  # rm -rf ./$NAME/base/node_modules
 
   if [ ! -z "$TARGET_SHA" ]; then
     cd ${NAME}
