@@ -2,20 +2,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development TARGET_ENV=development nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
+    "dev": "NODE_ENV=development TARGET_ENV=development nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
     "generate": "nuxt generate",
     "lint": "eslint ./src/ --ext .vue,.js,.ts",
     "lint:fix": "eslint ./src/ --ext .vue,.js,.ts --fix",
     "nuxt": "nuxt"
   },
   "dependencies": {
-    "nuxt": "2.10.0",
+    "@nuxt/typescript-runtime": "0.2.3",
+    "nuxt": "2.10.2",
     "vue-property-decorator": "8.2.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "0.3.1",
+    "@nuxt/types": "^0.3.3",
+    "@nuxt/typescript-build": "0.3.2",
     "@nuxtjs/eslint-config": "1.1.2",
     "@typescript-eslint/eslint-plugin": "2.3.3",
     "@typescript-eslint/parser": "2.3.3",

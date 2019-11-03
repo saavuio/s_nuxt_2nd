@@ -24,7 +24,7 @@ NOTE: this will download a bunch of files to your current directory, so make
 sure the directory is empty before doing this:
 
 ```sh
-mkdir -p s_base/s_nuxt_2nd && wget https://github.com/saavuio/s_nuxt_2nd/raw/v2/init.sh -P s_base/s_nuxt_2nd && chmod +x ./s_base/s_nuxt_2nd/init.sh && ./s_base/s_nuxt_2nd/init.sh
+mkdir -p s_base/s_nuxt_2nd && wget https://github.com/saavuio/s_nuxt_2nd/raw/v3/init.sh -P s_base/s_nuxt_2nd && chmod +x ./s_base/s_nuxt_2nd/init.sh && ./s_base/s_nuxt_2nd/init.sh
 ```
 
 ### Start a development server

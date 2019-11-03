@@ -3,7 +3,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd $SCRIPT_DIR
 
 NAME=s_nuxt_2nd
-VERSION=v2
+VERSION=v3
 IMAGE=saavu-local/${NAME}_${VERSION}
 
 if [ "$(docker images -q $IMAGE 2> /dev/null)" = "" ] && [ ! -f .reset-initiated ]; then

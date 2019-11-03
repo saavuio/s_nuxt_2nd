@@ -56,6 +56,6 @@ function base_build {
 
 # -- s_nuxt_2nd
 if [ ! -d s_nuxt_2nd ] || [ -z $OBF ]; then
-  base_fetch "s_nuxt_2nd" "v2"
-  base_build "s_nuxt_2nd" "v2"
+  base_fetch "s_nuxt_2nd" "v3"
+  base_build "s_nuxt_2nd" "v3"
 fi
