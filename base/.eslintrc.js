@@ -29,6 +29,13 @@ module.exports = {
     'no-null/no-null': 2,
     'no-console': ['error', { 'allow': ['log', 'debug', 'warn', 'error'] }],
     '@typescript-eslint/explicit-member-accessibility': 'off',
+    '@typescript-eslint/no-inferrable-types': [0, "ignore-params", "ignore-properties"],
+    '@typescript-eslint/typedef': [0, "parameter"],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    'vue/attributes-order': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'vue/no-v-html': 'off',
     'vue/singleline-html-element-content-newline': ['error', {
       'ignoreWhenNoAttributes': true,
       'ignores': ['pre', 'textarea', 'nuxt-link']
@@ -39,13 +46,15 @@ module.exports = {
       js: 'never',
       ts: 'never', // NOTE: ts itself doesn't want .ts extensions with imports, so don't lint here
       vue: 'always', // NOTE: ts does not recognize vue files imported without extensions, so enforce this
+      'd.ts': 'never',
     }],
+    'import/order': 'off',
   },
   settings: {
     'import/resolver': {
       node: {
         paths: ['src'],
-        extensions: ['.js', '.ts', '.vue']
+        extensions: ['.js', '.ts', '.vue', '.d.ts']
       },
       alias: {
         map: [
