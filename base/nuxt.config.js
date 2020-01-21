@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type, @typescript-eslint/ban-ts-ignore, no-param-reassign */
 export default {
   mode: 'universal',
   srcDir: 'src',
@@ -8,24 +9,58 @@ export default {
   generate: {
     dir: '.nuxt/generated',
   },
+  // prettier-ignore
   env: {
     NODE_ENV: process.env.NODE_ENV,
+    TARGET_ENV: process.env.TARGET_ENV,
   },
   server: {
     host: '0.0.0.0',
   },
-  head: {
-    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+  router: {
+    // Change route name separator from '-' to '/'
+    routeNameSplitter: '/',
   },
   // prettier-ignore
-  buildModules: [
-    '@nuxt/typescript-build'
+  head: {
+    title: 'UNVL.IT',
+    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+    link: [
+      { rel: 'icon', href: '/icons/favicon.png', type: 'image/png' },
+    ],
+  },
+  // prettier-ignore
+  modules: [
+    // 'nuxt-user-agent',
+    // 'cookie-universal-nuxt',
+    // '@/modules/separate-env',
   ],
   // prettier-ignore
+  buildModules: [
+    '@nuxt/typescript-build',
+    // '@nuxtjs/tailwindcss',
+    // 'nuxt-typed-vuex',
+  ],
+  // prettier-ignore
+  plugins: [
+    // '@/plugins/cookie-universal-nuxt-cross-domain',
+    // '@/plugins/custom-router',
+    // '@/plugins/custom-axios',
+    // '@/plugins/custom-vue-gtag',
+  ],
+  purgeCSS: {
+    whitelistPatterns: [
+      /-(leave|enter|appear)(|-(to|from|active))$/,
+      /^(?!(|.*?:)cursor-move).+-move$/,
+      /^nuxt-link(|-exact)-active$/,
+    ],
+    paths: ['shared/ui/**/*.vue'],
+  },
   build: {
     parallel: process.env.NODE_ENV === 'development',
     cache: process.env.NODE_ENV === 'development',
     hardSource: process.env.NODE_ENV === 'development',
+    // @ts-ignore
     extend(config, ctx) {
       const isDev = process.env.NODE_ENV === 'development';
       // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies
@@ -33,7 +68,7 @@ export default {
       // NOTE: s_nuxt_2nd specific. Normally HardSource doesn't need to be configured.
       // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies
       if (isDev) {
-        // eslint-disable-next-line no-param-reassign
+        // @ts-ignore
         config.plugins = config.plugins.filter(plugin => {
           return plugin.constructor.name !== 'HardSourceWebpackPlugin';
         });
@@ -54,6 +89,9 @@ export default {
         });
       }
     },
-    transpile: [/^vuetify/],
-  }
+    // prettier-ignore
+    transpile: [
+      /nuxt-typed-vuex/,
+    ]
+  },
 };

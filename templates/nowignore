@@ -1,5 +1,6 @@
 .nuxt
 .webpack-cache
+.history
 s_base
 node_modules
 node_modules_app
